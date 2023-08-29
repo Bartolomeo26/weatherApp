@@ -1,0 +1,41 @@
+#content {
+    width: 30%;
+    background: rgb(9, 121, 119);
+    background: linear-gradient(90deg, rgba(9, 121, 119, 0.7377801462381828) 25%, rgba(0, 212, 255, 1) 100%);
+    -webkit-box-shadow: 0px 8px 18px -6px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 8px 18px -6px rgba(66, 68, 90, 1);
+    box-shadow: 0px 8px 18px -6px rgba(66, 68, 90, 1);
+
+}
+
+#content .subtitle {
+    color: white;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#citySearch.has-addons {
+    justify-content: center;
+}
+
+figure#clouds img {
+    height: 220px;
+    width: 220px;
+}
+
+.has-image-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(icons/starfall-gif-51.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    transition: background 2s ease-out;
+}

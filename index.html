@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@600&family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="card has-text-centered is-flex is-justify-content-center" id="content">
+        <div class="card-content">
+            <div>
+                <form id="citySearch" class="field has-addons">
+                    <div class="control">
+                        <input type="text" placeholder="City" name="city" class="input is-rounded">
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <div class="card-image mt-5">
+                    <figure class="image mb-5 " id="clouds">
+                        <img src="icons/sun.png" class="has-image-centered" alt="Weather Icon">
+                    </figure>
+                    <p class="subtitle is-size-3">Clear sky</p>
+                </div>
+                <div class="is-flex is-align-items-center is-justify-content-center mb-1">
+                    <figure class="image is-32x32 is-inline-block mr-1 mt-1">
+                        <img src="icons/thermometer.png" alt="Weather Icon">
+                    </figure>
+                    <div id="temp">
+                        <p class="subtitle is-size-2">30.00 ℃</p>
+                    </div>
+                </div>
+                <div class="is-flex is-align-items-center is-justify-content-center mb-1">
+                    <figure class="image is-24x24 is-inline-block mr-2">
+                        <img src="icons/location.png" alt="Weather Icon">
+                    </figure>
+                    <div id="cityName">
+                        <p class="subtitle is-size-3">Ibiza, SP</p>
+                    </div>
+                </div>
+                <div class="is-flex is-align-items-center is-justify-content-center mb-1">
+                    <figure class="image is-24x24 is-inline-block mr-2">
+                        <img src="icons/date-71.png" alt="Weather Icon">
+                    </figure>
+                    <div id="date">
+                        <p class="subtitle is-size-4">Sat, 1 Jul</p>
+                    </div>
+                </div>
+                <div class="is-flex is-justify-content-space-between">
+                    <div class="is-flex is-align-items-center">
+                        <figure class="image is-24x24 is-inline-block mr-1">
+                            <img src="icons/pressure.png" alt="Weather Icon">
+                        </figure>
+                        <div id="pressure" class="is-inline-block">
+
+                            <p class="subtitle mb-1">Pressure</p>
+                            <p class="subtitle">1200HPa</p>
+                        </div>
+                    </div>
+                    <div class="is-flex is-align-items-center">
+                        <figure class="image is-24x24 is-inline-block mr-2 mt-2">
+                            <img src="icons/humidity.png" alt="Weather Icon">
+                        </figure>
+                        <div id="humidity" class="is-inline-block">
+
+                            <p class="subtitle mb-1">Humidity</p>
+                            <p class="subtitle">38%</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</body>
+
+</html>
