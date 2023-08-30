@@ -5,17 +5,22 @@ const cityName = document.querySelector('#cityName');
 const pressure = document.querySelector('#pressure');
 const humidity = document.querySelector('#humidity');
 const date = document.querySelector('#date');
+let counter = 0; //it is an information thanks to which we know 
+//if there was an error in the previous attempt of passing in the name of the city
 citySearch.addEventListener('submit', async function (e)
 {
     e.preventDefault();
-    clouds.innerHTML = '';
-    clouds.nextElementSibling.remove();
-    temperature.innerHTML = '';
-    cityName.innerHTML = '';
-    pressure.innerHTML = '';
-    humidity.innerHTML = '';
-    date.innerHTML = '';
-    classHidden();
+    if (counter === 0)
+    {
+        clouds.innerHTML = '';
+        clouds.nextElementSibling.innerHTML = '';
+        temperature.innerHTML = '';
+        cityName.innerHTML = '';
+        pressure.innerHTML = '';
+        humidity.innerHTML = '';
+        date.innerHTML = '';
+        classHidden();
+    }
     const dateObject = new Date();
     let todayDate = dateObject.toUTCString();
     const p = document.createElement('p');
@@ -31,9 +36,15 @@ citySearch.addEventListener('submit', async function (e)
     const data = await getData('https://api.openweathermap.org/data/2.5/weather', config);
     console.log(data);
     console.log(dataTime);
-    changeCity(data, dataTime);
-    classHidden();
-    date.append(p);
+    if (data)
+    {
+
+        changeCity(data, dataTime);
+        classHidden();
+        date.append(p);
+        counter = 0;
+    }
+    else { console.log("No such city."); counter = 1; }
     this.elements.city.value = '';
 })
 
@@ -71,8 +82,8 @@ function weatherProperty(type, data, dataTime)
         img.classList.add('has-image-centered');
         type.append(img);
         p.innerHTML = `${data.weather[0].main} - ${data.weather[0].description}`;
-        p.classList.add('subtitle', 'is-size-3');
-        type.parentElement.append(p);
+
+        type.nextElementSibling.innerHTML = `${data.weather[0].main} - ${data.weather[0].description}`;
         return;
     }
     else if (type === pressure)
@@ -103,9 +114,9 @@ function weatherIcon(data, dataTime)
     else if (data.weather[0].main === 'Rain')
     { document.body.style.backgroundImage = 'url(icons/rain.gif)'; return 'icons/raining.png' }
     else if (data.weather[0].main === 'Drizzle')
-        return 'icons/weather.png'
+    { document.body.style.backgroundImage = 'url(icons/drizzle.jpg)'; return 'icons/weather.png' }
     else
-        return 'icons/fog.png'
+    { document.body.style.backgroundImage = 'url(icons/mist.jpg)'; return 'icons/fog.png' }
 }
 
 function classHidden()
