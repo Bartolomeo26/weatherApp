@@ -5,20 +5,20 @@ const cityName = document.querySelector('#cityName');
 const pressure = document.querySelector('#pressure');
 const humidity = document.querySelector('#humidity');
 const date = document.querySelector('#date');
-let counter = 0; //it is an information thanks to which we know 
-//if there was an error in the previous attempt of passing in the name of the city
+
 citySearch.addEventListener('submit', async function (e)
 {
     e.preventDefault();
-    if (counter === 0)
+    const anyFigure = document.querySelector('figure');
+    clouds.innerHTML = '';
+    clouds.nextElementSibling.innerHTML = '';
+    temperature.innerHTML = '';
+    cityName.innerHTML = '';
+    pressure.innerHTML = '';
+    humidity.innerHTML = '';
+    date.innerHTML = '';
+    if (!anyFigure.classList.contains('is-hidden'))
     {
-        clouds.innerHTML = '';
-        clouds.nextElementSibling.innerHTML = '';
-        temperature.innerHTML = '';
-        cityName.innerHTML = '';
-        pressure.innerHTML = '';
-        humidity.innerHTML = '';
-        date.innerHTML = '';
         classHidden();
     }
     const dateObject = new Date();
@@ -42,9 +42,9 @@ citySearch.addEventListener('submit', async function (e)
         changeCity(data, dataTime);
         classHidden();
         date.append(p);
-        counter = 0;
+
     }
-    else { console.log("No such city."); counter = 1; }
+    else console.log("No such city.");
     this.elements.city.value = '';
 })
 
