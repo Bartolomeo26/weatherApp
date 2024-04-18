@@ -26,16 +26,18 @@ citySearch.addEventListener('submit', async function (e)
     const p = document.createElement('p');
     p.innerHTML = todayDate.slice(0, 11);
     p.classList.add('subtitle', 'is-size-4');
-
     const city = this.elements.city.value;
     const appid = 'acea379140b11445dc78568635ba06c7'
-    const apiTime = 'lwgoIhKvdFurykjI6U1GwQ==k4gTlzYK3P6xNBMQ';
     const config = { params: { q: city, APPID: appid, units: 'metric' } }
-    const configTime = { params: { city: city }, headers: { 'X-Api-Key': apiTime } }
-    const dataTime = await getData('https://api.api-ninjas.com/v1/worldtime', configTime);
+
     const data = await getData('https://api.openweathermap.org/data/2.5/weather', config);
-    console.log(data);
-    console.log(dataTime);
+
+    const configTime = {
+        params: { key: 'TSMSXB538D8T', format: 'json', by: 'position', lat: data.coord.lat, lng: data.coord.lon }
+    }
+
+    const dataTime = await getData('http://api.timezonedb.com/v2.1/get-time-zone', configTime);
+
     if (data)
     {
 
@@ -95,7 +97,7 @@ function weatherProperty(type, data, dataTime)
 }
 function weatherIcon(data, dataTime)
 {
-    let hr = parseInt(dataTime.hour);
+    let hr = parseInt(dataTime.formatted.split(' ')[1].split(':')[0]);
     if (data.weather[0].description === 'clear sky')
     {
         if (hr >= 22 && hr <= 24 || hr >= 0 && hr <= 5)
