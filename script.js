@@ -9,6 +9,17 @@ const date = document.querySelector('#date');
 citySearch.addEventListener('submit', async function (e)
 {
     e.preventDefault();
+    const city = this.elements.city.value;
+    const appid = 'acea379140b11445dc78568635ba06c7'
+    const config = { params: { q: city, APPID: appid, units: 'metric' } }
+
+    const data = await getData('https://api.openweathermap.org/data/2.5/weather', config);
+
+    const configTime = {
+        params: { key: 'TSMSXB538D8T', format: 'json', by: 'position', lat: data.coord.lat, lng: data.coord.lon }
+    }
+
+    const dataTime = await getData('http://api.timezonedb.com/v2.1/get-time-zone', configTime);
     const anyFigure = document.querySelector('figure');
     clouds.innerHTML = '';
     clouds.nextElementSibling.innerHTML = '';
@@ -26,17 +37,7 @@ citySearch.addEventListener('submit', async function (e)
     const p = document.createElement('p');
     p.innerHTML = todayDate.slice(0, 11);
     p.classList.add('subtitle', 'is-size-4');
-    const city = this.elements.city.value;
-    const appid = 'acea379140b11445dc78568635ba06c7'
-    const config = { params: { q: city, APPID: appid, units: 'metric' } }
 
-    const data = await getData('https://api.openweathermap.org/data/2.5/weather', config);
-
-    const configTime = {
-        params: { key: 'TSMSXB538D8T', format: 'json', by: 'position', lat: data.coord.lat, lng: data.coord.lon }
-    }
-
-    const dataTime = await getData('http://api.timezonedb.com/v2.1/get-time-zone', configTime);
 
     if (data)
     {
